@@ -4,13 +4,15 @@ clc;
 clear;
 close all;
 
-fprintf('Implementando cenário com usuários\n ')
+fprintf('========================\n'); 
+fprintf('Implementando cenário\n')
+fprintf('========================\n'); 
 
 % U ** Total de Usuarios = U*11 **
-S=1;% SC Total de SmallCells
+S=3;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
-U = 100;    % numeros de user
+U = 10;    % numeros de user
 
 % Eixos dos cenários.  (Área total = 4 Km²)
 X(1,:) = [0 1000]; % Eixo X minimo e máximo.
@@ -77,7 +79,7 @@ plot(x_Macro,y_Macro, '^', 'MarkerSize', 8);
 hold on
 plot(x_Users,y_Users, '*', 'color','red');
 hold on
-legend1 = legend('','UAV', 'ERB', 'Users');
+legend1 = legend('','','UAV', 'ERB', 'Users');
 set(legend1,'Location','northeastoutside');
 
 

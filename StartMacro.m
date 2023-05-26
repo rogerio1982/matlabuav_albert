@@ -10,7 +10,7 @@ for i = 1:M
     for j = 1:M
         
         MC(Cont) = StationBase;
-        fprintf('macro\n ')
+       % fprintf('macro\n ')
         MC(Cont).ID = Cont;
         MC(Cont).X = Px(i);
         MC(Cont).Y = Py(j);

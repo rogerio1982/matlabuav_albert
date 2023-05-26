@@ -52,14 +52,27 @@ cont=0;
                 aux = 1;
                 Small(Ind).PRB_F = Small(Ind).PRB_F - PR; %subtrai os PRB do small cell
                 Small(Ind).U = Small(Ind).U + 1;
-        fprintf('user na ERB: %d', Us(i).EB);
-        fprintf('na pos: %d',  Us(i).X);
-        fprintf(': %d\n',  Us(i).Y);
-            fprintf(' PRBs  %d\n', Small(Ind).PRB_F);
+        %relatorio    
+
+        fprintf('usuário ON: %d', user_index); 
+        fprintf(' | DR %d:',  Us(i).R_DR);
+        fprintf(' | PRB %d:',  Us(i).PRB); 
+        fprintf(' | CQI %d:',  Us(i).CQI);
+        fprintf(' | SINR %d:',  Us(i).SINR);
+        fprintf(' | uavbs: %d',  Small(Ind).ID);
+        fprintf(' | na pos x : %d',  Us(i).X); fprintf(' e y : %d\n',  Us(i).Y);
+
         cont=cont+1;
 
           else
               DR(i,Ind) = 0;
+        fprintf('usuário OFF: %d', user_index); 
+        fprintf(' | DR %d:',  Us(i).R_DR);
+        fprintf(' | PRB %d:',  Us(i).PRB); 
+        fprintf(' | CQI %d:',  Us(i).CQI);
+        fprintf(' | SINR %d:',  Us(i).SINR);
+        fprintf(' | uavbs: %d',  Small(Ind).ID);
+        fprintf(' | na pos x : %d',  Us(i).X); fprintf(' e y : %d\n',  Us(i).Y);
           end
       
           if (T == 0)
@@ -78,17 +91,30 @@ cont=0;
       
    
     end  % Conecta os usuários 
+    %relatorio  
+    fprintf('\n'); 
+
+    fprintf('Total usuário alocados %d',  cont); fprintf(' de  %d\n',  U);
     
-    fprintf('Total usuário alocados %d',  cont);
-    fprintf(' de  %d\n',  U);
-    
+    fprintf('\n'); 
+
    for j = 1:S
      cont = 1;  
      Small(j).VU = [];
+     %relatorio        
+     fprintf('UAVBS %d\n', Small(j).ID);
+     fprintf('PRBs disponíveis %d\n',Small(j).PRB_F);
+     fprintf('Usuário alocados %d\n', Small(j).U);
+     fprintf('Altura: %d\n',  Small(j).H);
+     fprintf('Raio coberto: %d\n',  Small(j).Cob);
+
+     fprintf('\n');
+
      for i = 1:U
         if (Us(i).EB == j && Us(i).ES == 2)
             Small(j).VU(cont) = i;
             cont = cont + 1;
+
         end 
      end
             

@@ -21,13 +21,13 @@ for j = 1:S
         Small(j).PRB_F = 100;
         Small(j).B = 18e6; % 18 MHz 
         Small(j).C = 0;
-        Small(j).H = 60;%altura
+        Small(j).H = 40;%altura
         Small(j).Cob = (Small(j).H)*5; % Metros (Euclidiana)
         Small(j).UB = 0; % Usuários bloqueados
         Small(j).Int = 0; % Interferencia
         Small(j).MAX_U = 100;
         Small(j).U = 0;
-        fprintf('small a: %d\n', Small(j).ID);
+      %  fprintf('small a: %d\n', Small(j).ID);
         Cont = Cont + 1;
         
    % end
