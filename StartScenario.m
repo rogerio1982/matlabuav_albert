@@ -9,7 +9,7 @@ fprintf('Implementando cenário\n')
 fprintf('========================\n'); 
 
 % U ** Total de Usuarios = U*11 **
-S=3;% SC Total de SmallCells
+S=5;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
 U = 100;    % numeros de user
@@ -20,7 +20,7 @@ Y(1,:) = [0 1000]; % Eixo Y minimo e máximo.
 
 
 
-%user
+%gerar usuarios 
 [User] = StartUser(U, X, Y); % Função para iniciar os usuários
 
 
@@ -31,20 +31,26 @@ end
 x_Users = users_positions_X;
 y_Users = users_positions_Y;
 
+
 %cluster
 all_xy=[x_Users.',y_Users.'];%matriz transposta .'
-[idx,C] = kmeans(all_xy,3);
-
+[idx,C,sumd, D] = kmeans(all_xy,S);
+%%fprintf('xy: %d\n', radius);
 teste=[C(:,1),C(:,2)];
 
 v1=teste(:,1);
 v2=teste(:,2);
 
+distancia=[];
 
-%small
+%distancia dos centro p usuarios borda
+for i=1:S
+    distancia=max(D);
+end
+distancia=double(transpose(distancia));
 
 %[Small] = StartSmall(S, X, Y); % Função para iniciar as SmallCells 
-[Small] = StartSmall(S, X, Y,v1,v2);
+[Small] = StartSmall(S, X, Y,v1,v2,distancia);
 
 [Macro] = StartMacro(MC, X, Y); % Função para iniciar as MacriCells
 
@@ -101,9 +107,9 @@ set(legend1,'Location','northeastoutside');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%plot cluster
 figure
-gscatter(all_xy(:,1),all_xy(:,2),idx,'bgm')
+gscatter(all_xy(:,1),all_xy(:,2),idx,'rgb')
 hold on
 plot(C(:,1),C(:,2),'kx')
-legend('Cluster 1','Cluster 2','Cluster 3','Cluster Centroid')
+%legend('Cluster 1','Cluster 2','Cluster 3','Cluster Centroid')

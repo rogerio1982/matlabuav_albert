@@ -1,8 +1,8 @@
-function [Small] = StartSmall(S, X, Y,v1,v2)
+function [Small] = StartSmall(S, X, Y,v1,v2,distancia)
 
 %v1=[100,200,300];
 %v2=[200,300,400];
-
+distancia=distancia.';
 Cont = 1; %Contontador para preencher as Small
 for j = 1:S
   %  for j = 1:S
@@ -18,8 +18,8 @@ for j = 1:S
         Small(j).PRB_F = 100;
         Small(j).B = 18e6; % 18 MHz 
         Small(j).C = 0;
-        Small(j).H = 50;%altura
-        Small(j).Cob = (Small(j).H)*5; % Metros (Euclidiana)
+        Small(j).H = 100;%altura
+        Small(j).Cob = (Small(j).H)*2;%(Small(j).H)*5; % Metros (Euclidiana)
         Small(j).UB = 0; % Usuários bloqueados
         Small(j).Int = 0; % Interferencia
         Small(j).MAX_U = 100;
