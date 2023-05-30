@@ -1,19 +1,16 @@
-function [Small] = StartSmall(S, X, Y)
+function [Small] = StartSmall(S, X, Y,v1,v2)
 
-
-%Px = linspace(X(1,1), X(1,2), S); % Contria um vetor de 10 posições com valores entre Xmin e Xmax
-%Py = linspace(Y(1,1), Y(1,2), S); % Contria um vetor de 10 posições com valores entre Ymin e Ymax
-
-
+%v1=[100,200,300];
+%v2=[200,300,400];
 
 Cont = 1; %Contontador para preencher as Small
 for j = 1:S
   %  for j = 1:S
-        
+   
         Small(j) = StationBase;
         Small(j).ID = j;
-        Small(j).X = rand(1) * X(1,2);%Px(i);
-        Small(j).Y = rand(1) * Y(1,2);%Py(j);
+        Small(j).X = v1(j);%rand(1) * X(1,2);%Px(i); rand(10,2)
+        Small(j).Y = v2(j);%rand(1) * Y(1,2);%Py(j); rand(10,2)
         Small(j).RP = 33; % dBm 
         Small(j).Fr = 2.6e9; % 2.4 GHz
         Small(j).D = true;
@@ -21,7 +18,7 @@ for j = 1:S
         Small(j).PRB_F = 100;
         Small(j).B = 18e6; % 18 MHz 
         Small(j).C = 0;
-        Small(j).H = 40;%altura
+        Small(j).H = 50;%altura
         Small(j).Cob = (Small(j).H)*5; % Metros (Euclidiana)
         Small(j).UB = 0; % Usuários bloqueados
         Small(j).Int = 0; % Interferencia
@@ -29,7 +26,7 @@ for j = 1:S
         Small(j).U = 0;
       %  fprintf('small a: %d\n', Small(j).ID);
         Cont = Cont + 1;
-        
+
    % end
 end
 

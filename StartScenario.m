@@ -12,19 +12,39 @@ fprintf('========================\n');
 S=3;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
-U = 10;    % numeros de user
+U = 100;    % numeros de user
 
 % Eixos dos cenários.  (Área total = 4 Km²)
 X(1,:) = [0 1000]; % Eixo X minimo e máximo.
 Y(1,:) = [0 1000]; % Eixo Y minimo e máximo.
 
 
-% Confirmar os parâmetros usados % ----------------------------------------
-% -------------------------------------------------------------------------
 
+%user
 [User] = StartUser(U, X, Y); % Função para iniciar os usuários
 
-[Small] = StartSmall(S, X, Y); % Função para iniciar as SmallCells 
+
+for i=1:U
+    users_positions_X(i) = User(i).X;
+    users_positions_Y(i) = User(i).Y;
+end
+x_Users = users_positions_X;
+y_Users = users_positions_Y;
+
+%cluster
+all_xy=[x_Users.',y_Users.'];%matriz transposta .'
+[idx,C] = kmeans(all_xy,3);
+
+teste=[C(:,1),C(:,2)];
+
+v1=teste(:,1);
+v2=teste(:,2);
+
+
+%small
+
+%[Small] = StartSmall(S, X, Y); % Função para iniciar as SmallCells 
+[Small] = StartSmall(S, X, Y,v1,v2);
 
 [Macro] = StartMacro(MC, X, Y); % Função para iniciar as MacriCells
 
@@ -39,19 +59,14 @@ for i=1:S
 
 end
 
-%user
-for i=1:U
-    users_positions_X(i) = User(i).X;
-    users_positions_Y(i) = User(i).Y;
-end
+
+
 
 x_Smalls=(small_positions_X);
 x_Macro = Macro(1).X;
-x_Users = (users_positions_X);
-
 y_Smalls=small_positions_Y;
 y_Macro = Macro(1).Y;
-y_Users=users_positions_Y;
+
 
 
 %plot all
@@ -71,6 +86,8 @@ for i=1:S
     plot(x, y, 'b-', 'LineWidth', 2);
     hold on;
     axis equal;
+ %% fprintf('xy: %d\n', radius);    
+
 end
 
 plot(x_Smalls,y_Smalls, 'o', 'color', 'blue');
@@ -83,18 +100,10 @@ legend1 = legend('','','UAV', 'ERB', 'Users');
 set(legend1,'Location','northeastoutside');
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
-
-
-
-
-
-
-
-
-
-%end
-
+figure
+gscatter(all_xy(:,1),all_xy(:,2),idx,'bgm')
+hold on
+plot(C(:,1),C(:,2),'kx')
+legend('Cluster 1','Cluster 2','Cluster 3','Cluster Centroid')

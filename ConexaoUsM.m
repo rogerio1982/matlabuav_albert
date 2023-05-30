@@ -93,8 +93,9 @@ cont=0;
     end  % Conecta os usuários 
     %relatorio  
     fprintf('\n'); 
-
-    fprintf('Total usuário alocados %d',  cont); fprintf(' de  %d\n',  U);
+    fprintf('Total usuário %d\n', U);
+    fprintf('Alocados %d\n',  cont); 
+    fprintf('OFF %d\n',  U-cont);
     
     fprintf('\n'); 
 
