@@ -35,26 +35,34 @@ y_Users = users_positions_Y;
 %cluster
 all_xy=[x_Users.',y_Users.'];%matriz transposta .'
 [idx,C,sumd, D] = kmeans(all_xy,S);
-%%fprintf('xy: %d\n', radius);
 teste=[C(:,1),C(:,2)];
 
-v1=teste(:,1);
-v2=teste(:,2);
+%uav na posicao centra do cluster
+v1=C(:,1);
+v2=C(:,2);
 
-distancia=[];
-
-%distancia dos centro p usuarios borda
-for i=1:S
-    distancia=max(D);
+%distancia de todos os usuários para o uav do cluster
+maxDistances=[];
+for k = 1 : S
+    % Get x and y of centroid.
+    xc = C(k, 1);
+    yc = C(k, 2);
+    % Get the x and y coordinates of points within this class only.
+    inClass = idx == k; % Indexes of points that were assigned to this class.
+    x = all_xy(inClass, 1); % Get not ALL x, but just x within this one class.
+    y = all_xy(inClass, 2); % Get not ALL y, but just y within this one class.
+    % Get distances of all points in the class to the centroid for this class.
+    distances = sqrt((x - xc) .^ 2 + (y - yc) .^ 2);
+    maxDistances(k)= max(distances);
 end
-distancia=double(transpose(distancia));
+maxDistances=double(transpose(maxDistances));
+
+
+
 
 %[Small] = StartSmall(S, X, Y); % Função para iniciar as SmallCells 
-[Small] = StartSmall(S, X, Y,v1,v2,distancia);
-
+[Small] = StartSmall(S, X, Y,v1,v2,maxDistances);
 [Macro] = StartMacro(MC, X, Y); % Função para iniciar as MacriCells
-
-
 [Us1, S1] = ConexaoUsM(User, Small); % Usuários e Small
 %[Us1, S1] = ConexaoUs_alt(User, Small); % Usuários e Small
 
@@ -113,3 +121,6 @@ gscatter(all_xy(:,1),all_xy(:,2),idx,'rgb')
 hold on
 plot(C(:,1),C(:,2),'kx')
 %legend('Cluster 1','Cluster 2','Cluster 3','Cluster Centroid')
+
+fprintf('distancia: %d\n', round(maxDistances));
+%fprintf('teste: %d\n', round(teste));
