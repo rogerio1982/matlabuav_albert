@@ -12,10 +12,17 @@ for j = 1:U
   %  for i = 1:UN % Criação de usuários.
         Us(j) = User;
         Us(j).X = rand(1) * X(1,2);
+        x=Us(j).X ;
         Us(j).Y = rand(1) * Y(1,2);
+        y=Us(j).Y ;
+
         Us(j).R_DR = T;
         Us(j).M = j;
+        Us(j).Prx=0;
         a = a + 1;
+     % fprintf('x: %d\n', x); 
+
+ 
      %    fprintf('DR of a: %d\n', Us(j).R_DR);
   %  end
 end
@@ -23,5 +30,5 @@ end
 
 
 
-end
+
 

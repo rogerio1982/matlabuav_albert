@@ -1,4 +1,4 @@
-function [DR, CQI, SINR, I] = CalculateChannel(U, S, Small)
+function [DR, CQI, SINR, I, Prx] = CalculateChannel(U, S, Small)
 
    
 D = (((U.X - S.X)^2) + ((U.Y - S.Y)^2))^0.5;  %Distancia de Euclides
@@ -9,7 +9,7 @@ D = (((U.X - S.X)^2) + ((U.Y - S.Y)^2))^0.5;  %Distancia de Euclides
 %fprintf(' C: %d\n', C);
 
 
-if (D <= S.Cob)
+if (D <= S.Cob && S.D)
 
     WN = 7.4e-13; % Ruído Branco (CORRIGIR)
     I = 0; % Interferencia gerada por outras células
@@ -34,6 +34,7 @@ if (D <= S.Cob)
     Lost = A + 10*Y*log10( D/D0 )+ Sv - E; % Perda no Canal
 
     Pw = 10^((S.RP - Lost)/10)/1000;
+    Prx=Pw;
 
     for i = 1:length(Small) % calculate intercell interference
 

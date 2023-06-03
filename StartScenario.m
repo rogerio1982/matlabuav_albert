@@ -9,15 +9,16 @@ fprintf('Implementando cenário\n')
 fprintf('========================\n'); 
 
 % U ** Total de Usuarios = U*11 **
-S=5;% SC Total de SmallCells
+S=3;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
-U = 100;    % numeros de user
+U = 10;    % numeros de user
 
 % Eixos dos cenários.  (Área total = 4 Km²)
 X(1,:) = [0 1000]; % Eixo X minimo e máximo.
 Y(1,:) = [0 1000]; % Eixo Y minimo e máximo.
 
+%plot all
 
 
 %gerar usuarios 
@@ -31,7 +32,7 @@ end
 x_Users = users_positions_X;
 y_Users = users_positions_Y;
 
-
+scatter (x_Users,y_Users)
 %cluster
 all_xy=[x_Users.',y_Users.'];%matriz transposta .'
 [idx,C,sumd, D] = kmeans(all_xy,S);
@@ -122,5 +123,5 @@ hold on
 plot(C(:,1),C(:,2),'kx')
 %legend('Cluster 1','Cluster 2','Cluster 3','Cluster Centroid')
 
-fprintf('distancia: %d\n', round(maxDistances));
+%fprintf('distancia: %d\n', round(maxDistances));
 %fprintf('teste: %d\n', round(teste));

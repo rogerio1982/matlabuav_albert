@@ -16,6 +16,7 @@ classdef User
         ES = 0; % 1 = Micro || 2 == Macro
         EBC; %Smalls Candidatas para conexão
         Int; %Interferência
+        Prx; %potencia recebida
     end
     
     methods

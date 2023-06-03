@@ -6,7 +6,7 @@ function [Us, Small] = ConexaoUsM(Us, Small)
      
     for i = 1:U
         for j = 1:S
-                   [DR(i,j), CQI(i,j), SINR(i,j)] = CalculateChannel(Us(i), Small(j), Small);  
+                   [DR(i,j), CQI(i,j), SINR(i,j), Prx(i,j)] = CalculateChannel(Us(i), Small(j), Small);  
                   %c
         end
     end   % Calcula o SINR, CQI e DR (1 PRB) de cada usuário para cada Small
@@ -49,6 +49,7 @@ cont=0;
                 Us(i).CQI = CQI(i,Ind);
                 Us(i).SINR = SINR(i,Ind);
                 Us(i).C = true;
+                Us(i).Prx=Prx(i,Ind);
                 aux = 1;
                 Small(Ind).PRB_F = Small(Ind).PRB_F - PR; %subtrai os PRB do small cell
                 Small(Ind).U = Small(Ind).U + 1;
@@ -59,6 +60,7 @@ cont=0;
         fprintf(' | PRB %d:',  Us(i).PRB); 
         fprintf(' | CQI %d:',  Us(i).CQI);
         fprintf(' | SINR %d:',  Us(i).SINR);
+        fprintf(' | Prx %d:',  Us(i).Prx);
         fprintf(' | uavbs: %d',  Small(Ind).ID);
         fprintf(' | na pos x : %d',  Us(i).X); fprintf(' e y : %d\n',  Us(i).Y);
 
@@ -71,6 +73,7 @@ cont=0;
         fprintf(' | PRB %d:',  Us(i).PRB); 
         fprintf(' | CQI %d:',  Us(i).CQI);
         fprintf(' | SINR %d:',  Us(i).SINR);
+        fprintf(' | Prx %d:',  Us(i).Prx);
         fprintf(' | uavbs: %d',  Small(Ind).ID);
         fprintf(' | na pos x : %d',  Us(i).X); fprintf(' e y : %d\n',  Us(i).Y);
           end

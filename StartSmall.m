@@ -18,7 +18,10 @@ for j = 1:S
         Small(j).PRB_F = 100;
         Small(j).B = 18e6; % 18 MHz 
         Small(j).C = 0;
-        Small(j).H = round(distancia(j)/5);%altura
+       %h=distancia-tang30 
+       %round(sqrt((distancia(j)+2)^2-distancia(j)^2));
+       %round(distancia(j)/5); altura
+        Small(j).H = round(distancia(j)*0.5);
         Small(j).Cob = round(distancia(j));%(Small(j).H)*3; % Metros (Euclidiana)
         Small(j).UB = 0; % Usuários bloqueados
         Small(j).Int = 0; % Interferencia
