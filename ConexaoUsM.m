@@ -1,4 +1,4 @@
-function [Us, Small] = ConexaoUsM(Us, Small)
+function [Us, Small,fitness] = ConexaoUsM(Us, Small)
 
     S = length(Small);
     U = length (Us);
@@ -97,7 +97,8 @@ cont=0;
     %relatorio  
     fprintf('\n'); 
     fprintf('Total usuário %d\n', U);
-    fprintf('Alocados %d\n',  cont); 
+    fprintf('Alocados %d\n',  cont);
+    fitness=cont;
     fprintf('OFF %d\n',  U-cont);
     
     fprintf('\n'); 
