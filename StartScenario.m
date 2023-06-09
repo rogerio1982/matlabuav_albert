@@ -83,8 +83,6 @@ Y(1,:) = [0 1000]; % Eixo Y minimo e máximo.
 
 
 
-
-
 %plot all
 figure1 = figure('Name', 'Cenário Inicial','Color',[1 1 1]);
 axes1 = axes('Parent',figure1);
@@ -115,9 +113,7 @@ hold on
 legend1 = legend('','','UAV', 'ERB', 'Users');
 set(legend1,'Location','northeastoutside');
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%plot cluster
+%plot cluster 2d
 figure
 gscatter(all_xy(:,1),all_xy(:,2),idx,'rgb')
 hold on
@@ -126,3 +122,37 @@ plot(C(:,1),C(:,2),'kx')
 
 %fprintf('distancia: %d\n', round(maxDistances));
 %fprintf('teste: %d\n', round(teste));
+
+
+%% Plotting 3d
+
+figure('Name', 'Communication Ranges', 'units','normalized','outerposition', ...
+    [0 0 1 1]);
+
+for i=1:idx
+    %alteracao para plot 3d
+    x_circle_uav = C(i, 1) ;
+    y_circle_uav = C(i, 2) ;
+    %z = duration(0,maxDistances(i),1);
+    z = duration(0,50,1);
+
+    %plot3(x_circle_uav,y_circle_uav,z,'X','DurationTickFormat','mm:ss')
+    plot3(x_circle_uav,y_circle_uav,z,'X','MarkerSize',20, 'LineWidth',3)
+
+    xlabel('X')
+    ylabel('Y')
+    zlabel('height')
+    hold on;
+end
+
+users = gscatter(x_Users,y_Users, idx,"",".",20);
+hold on;
+%axis equal;
+
+%legend([p_centroid,p_center,users], 'UAV', 'Base Station');
+%legend([p_centroid],'UAVs')
+
+title(' 3D Coverage UAV Base stations ');
+xlabel('1000 meters');
+ylabel('1000 meters');
+
