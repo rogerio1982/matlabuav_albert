@@ -10,13 +10,14 @@ classdef User
         PRB = 0; % Total de PRBs 
         CQI = 0; % Indicador de Qualidade do Canal 
         SINR = 0; % Relação Sinal/Ruido
+        PRX = 0; %potencia re
         C = false; %  Usuario conectado?
         V; % Velocidade
         M; % Momento.
         ES = 0; % 1 = Micro || 2 == Macro
         EBC; %Smalls Candidatas para conexão
         Int; %Interferência
-        Prx; %potencia recebida
+        cebida
     end
     
     methods

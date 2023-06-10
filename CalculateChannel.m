@@ -1,4 +1,4 @@
-function [DR, CQI, SINR, I, Prx] = CalculateChannel(U, S, Small)
+function [DR, CQI, SINR,PRX, I ] = CalculateChannel(U, S, Small)
 
    
 D = (((U.X - S.X)^2) + ((U.Y - S.Y)^2))^0.5;  %Distancia de Euclides
@@ -13,6 +13,7 @@ if (D <= S.Cob && S.D)
 
     WN = 7.4e-13; % Ruído Branco (CORRIGIR)
     I = 0; % Interferencia gerada por outras células
+    
 
     D0 = 100; % Distância Referência
     Sv = 9.4; % 8.2 to 10.6 dB ==> 
@@ -34,7 +35,7 @@ if (D <= S.Cob && S.D)
     Lost = A + 10*Y*log10( D/D0 )+ Sv - E; % Perda no Canal
 
     Pw = 10^((S.RP - Lost)/10)/1000;
-    Prx=Pw;
+    
 
     for i = 1:length(Small) % calculate intercell interference
 
@@ -58,13 +59,15 @@ if (D <= S.Cob && S.D)
     DR = (C * log2(1+SINRw)); % Datarate com apenas 1 PRB sendo usado.
 %   CQI = round(1 + ((7/13)*(SINR+6)));
     CQI = round(1 + ((7/13)*(SINRw+6)));
+    PRX =round(Pdbm);
    
 else
     
     SINR = 0;
     DR = 0;
     CQI = 0;
-    I= 0;
+    I = 0;
+    PRX = 0;
 
 
 end

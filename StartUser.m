@@ -20,7 +20,7 @@ for j = 1:U
 
         Us(j).R_DR = T;
         Us(j).M = j;
-        Us(j).Prx=0;
+    %    Us(j).Prx=0;
         a = a + 1;
      % fprintf('x: %d\n', x); 
 

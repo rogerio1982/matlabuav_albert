@@ -12,7 +12,7 @@ fprintf('========================\n');
 S=5;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
-U = 100;    % numeros de user
+U = 10;    % numeros de user
 
 % Eixos dos cenários.  (Área total = 4 Km²)
 X(1,:) = [0 1000]; % Eixo X minimo e máximo.
