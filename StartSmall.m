@@ -23,6 +23,9 @@ for j = 1:S
         if distancia(j) >300 %LIMITAR A COBERTURA
             distancia(j) = 300;
         end
+        distancerandom=randi([50 200]);;
+        distancefixed=round(200);;
+
         Small(j).H = round(distancia(j)*0.5);
         Small(j).Cob = round(distancia(j)); 
         Small(j).UB = 0; % Usuários bloqueados

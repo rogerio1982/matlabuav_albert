@@ -12,11 +12,11 @@ fprintf('========================\n');
 S=5;% SC Total de SmallCells
 MC=1;% M Total de MacroCells
 Sim = 0;    % Total de Execuções
-U = 10;    % numeros de user
+U = 100;    % numeros de user
 
 % Eixos dos cenários.  (Área total = 4 Km²)
-X(1,:) = [0 1000]; % Eixo X minimo e máximo.
-Y(1,:) = [0 1000]; % Eixo Y minimo e máximo.
+X(1,:) = [0 100]; % Eixo X minimo e máximo.
+Y(1,:) = [0 100]; % Eixo Y minimo e máximo.
 
 %plot all
 
@@ -137,7 +137,7 @@ for i=1:idx
     z = duration(0,50,1);
 
     %plot3(x_circle_uav,y_circle_uav,z,'X','DurationTickFormat','mm:ss')
-    plot3(x_circle_uav,y_circle_uav,z,'X','MarkerSize',20, 'LineWidth',3)
+    plot3(x_circle_uav,y_circle_uav,z,'X','MarkerSize',30, 'LineWidth',3)
 
     xlabel('X')
     ylabel('Y')
@@ -145,7 +145,7 @@ for i=1:idx
     hold on;
 end
 
-users = gscatter(x_Users,y_Users, idx,"",".",20);
+users = gscatter(x_Users,y_Users, idx,"",".",30);
 hold on;
 %axis equal;
 
@@ -153,6 +153,6 @@ hold on;
 %legend([p_centroid],'UAVs')
 
 title(' 3D Coverage UAV Base stations ');
-xlabel('1000 meters');
-ylabel('1000 meters');
+xlabel('500 meters');
+ylabel('500 meters');
 

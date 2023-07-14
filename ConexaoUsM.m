@@ -9,7 +9,7 @@ function [Us, Small,fitness] = ConexaoUsM(Us, Small)
                    [DR(i,j), CQI(i,j), SINR(i,j), PRX(i,j)] = CalculateChannel(Us(i), Small(j), Small);  
                   %c
         end
-    end   % Calcula o SINR, CQI e DR (1 PRB) de cada usuário para cada Small
+    end   % Calcula o SINR, CQI,  DR (1 PRB) PtR de cada usuário para cada Small
     
     
     
@@ -48,7 +48,7 @@ cont=0;
                 Us(i).ES = 1; %1 small 2macro
                 Us(i).CQI = CQI(i,Ind);
                 Us(i).SINR = SINR(i,Ind);
-                Us(i).PRX =  Small(Ind).RP - PRX(i,Ind);
+                Us(i).PRX =  Small(Ind).RP - PRX(i,Ind);%potencia recebida pelo usuario
                 Us(i).C = true;
                 aux = 1;
                 Small(Ind).PRB_F = Small(Ind).PRB_F - PR; %subtrai os PRB do small cell
@@ -99,7 +99,9 @@ cont=0;
     fprintf('\n'); 
     fprintf('Total usuário %d\n', U);
     fprintf('Alocados %d\n',  cont);
+    fprintf('PRB dispo %d\n',  Small(Ind).PRB_F);
     fitness=cont;
+
     fprintf('OFF %d\n',  U-cont);
     
     fprintf('\n'); 

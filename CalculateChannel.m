@@ -56,7 +56,7 @@ if (D <= S.Cob && S.D)
     SINR = 10 * log10(1000 * SINRw);
 
     C = S.B / S.PRB;%smallcell
-    DR = (C * log2(1+SINRw)); % Datarate com apenas 1 PRB sendo usado.
+    DR = (C * log2(1+SINRw)); % Datarate com apenas 1 PRB sendo usado/shannon.
 %   CQI = round(1 + ((7/13)*(SINR+6)));
     CQI = round(1 + ((7/13)*(SINRw+6)));
     PRX =round(Pdbm);
